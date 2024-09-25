@@ -1,6 +1,6 @@
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
 import Kung from "../../assets/kung-fu.png";
-import Play from "../../assets/play.png";
+// import Play from "../../assets/play.png";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 
