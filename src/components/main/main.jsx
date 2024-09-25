@@ -11,8 +11,6 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import { useState } from "react";
 
-import React from "react";
-
 function Slider() {
   const [swiperInstance, setSwiperInstance] = useState(null);
 
