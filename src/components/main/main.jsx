@@ -29,7 +29,6 @@ function Slider() {
             <h1 className="text-3xl">Kung Fu Panda 4</h1>
             <p className="">2024 • Комедия • 1ч 34м • EN • 6+ </p>
             <button className="flex items-center gap-5 px-[100px] py-[16px] bg-white text-red-600 rounded-lg">
-              <img className="" src={Play} alt="" />
               <p className="">Смотреть</p>
             </button>
           </div>
@@ -40,7 +39,6 @@ function Slider() {
             <h1 className="text-3xl">Kung Fu Panda 4</h1>
             <p className="">2024 • Комедия • 1ч 34м • EN • 6+ </p>
             <button className="flex items-center gap-5 px-[100px] py-[16px] bg-white text-red-600 rounded-lg">
-              <img className="" src={Play} alt="" />
               <p className="">Смотреть</p>
             </button>
           </div>{" "}
@@ -52,7 +50,6 @@ function Slider() {
             <h1 className="text-3xl">Kung Fu Panda 4</h1>
             <p className="">2024 • Комедия • 1ч 34м • EN • 6+ </p>
             <button className="flex items-center gap-5 px-[100px] py-[16px] bg-white text-red-600 rounded-lg">
-              <img className="" src={Play} alt="" />
               <p className="">Смотреть</p>
             </button>
           </div>
