@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: black;
+}
+.nma {
+  padding: 13px;
+  background-color: #313131;
+  border-radius: 12px;
+}
+.nma2 {
+  background-color: #c61f1f;
+  border-radius: 12px;
+}
+.rang {
+  color: #c61f1f;
+}
