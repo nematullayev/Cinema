@@ -16,6 +16,8 @@ import Sms from "./pages/sms";
 import Login from "./pages/login";
 
 import RootLayout from "./layout/RootLayout";
+import Seanse from "./pages/seanse";
+import Profil from "./pages/profil";
 
 function App() {
   const routes = createBrowserRouter([
@@ -26,6 +28,19 @@ function App() {
     {
       path: "/login",
       element: <Login />,
+    },
+    {
+      path: "/sms",
+      element: <Sms />,
+    },
+
+    {
+      path: "/seanse",
+      element: <Seanse />,
+    },
+    {
+      path: "/profil",
+      element: <Profil />,
     },
   ]);
   return (

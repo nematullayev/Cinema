@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"; // Import the useNavigate hook
 import Header from "../components/header/header";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const Login = () => {
   const [input, setInput] = useState(""); // Initialize input with an empty string
   const navigate = useNavigate(); // Initialize the useNavigate hook for redirection
@@ -9,7 +12,7 @@ const Login = () => {
   let handleAdd = () => {
     console.log(input);
     if (input === "") {
-      alert("Telefon raqamni kiriting");
+      toast.error("Telefon raqamni kiriting");
     } else {
       fetch("https://fakestoreapi.com/auth/login", {
         method: "POST",
@@ -27,7 +30,7 @@ const Login = () => {
           console.log(json);
           if (json.token) {
             localStorage.setItem("token", json.token);
-            navigate("/");
+            navigate("/sms");
           } else {
             alert("Invalid login");
           }
@@ -68,6 +71,7 @@ const Login = () => {
             Регистрация
           </button>
         </form>
+        <ToastContainer />
       </div>
     </>
   );

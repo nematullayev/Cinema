@@ -1,3 +1,18 @@
+import Foter1 from "../../assets/foter1.png";
+import Foter2 from "../../assets/foter2.png";
+import Foter3 from "../../assets/foter3.png";
+import Foter4 from "../../assets/foter4.png";
+import Foter5 from "../../assets/foter5.png";
+import Foter6 from "../../assets/foter6.png";
+import Foter7 from "../../assets/foter7.png";
+import Foter8 from "../../assets/foter8.png";
+import Foter9 from "../../assets/foter9.png";
+import Foter10 from "../../assets/foter10.png";
+import Foter11 from "../../assets/foter11.png";
+import Foter12 from "../../assets/foter12.png";
+import Foter13 from "../../assets/foter13.png";
+import Foter14 from "../../assets/foter14.png";
+
 const Footer = () => {
   return (
     <footer className="flex justify-between p-[30px] bg-[#111111] rounded-2xl	">

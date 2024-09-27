@@ -26,14 +26,18 @@ const Header = () => {
         </NavLink>
       </div>
       <div className="flex gap-[25px]">
-        <div className="cursor-pointer flex flex-col gap-[10px] items-center">
-          <img src={TV} alt="TV" />
-          <p className="rang">Афиша</p>
-        </div>
-        <div className="cursor-pointer flex flex-col gap-[10px] items-center">
-          <img src={Tablet} alt="Tablet" />
-          <p>Сеансы</p>
-        </div>
+        <NavLink to="/">
+          <div className=" act cursor-pointer flex flex-col gap-[10px] items-center">
+            <img src={TV} alt="TV" />
+            <p className="rang">Афиша</p>
+          </div>
+        </NavLink>
+        <NavLink to="/seanse">
+          <div className=" act cursor-pointer flex flex-col gap-[10px] items-center">
+            <img src={Tablet} alt="Tablet" />
+            <p>Сеансы</p>
+          </div>
+        </NavLink>
         <div className="cursor-pointer flex flex-col gap-[10px] items-center">
           <img src={Coupon} alt="Coupon" />
           <p>Билеты</p>
@@ -53,7 +57,7 @@ const Header = () => {
         </div>
         <div>
           {isLoggedIn ? (
-            <NavLink to="/">
+            <NavLink to="/profil">
               <button className="nma2 px-[66px] py-[18px]">Профиль</button>
             </NavLink>
           ) : (

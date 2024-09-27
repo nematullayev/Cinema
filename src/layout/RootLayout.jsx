@@ -50,10 +50,12 @@ const RootLayout = () => {
             <img src={TV} alt="TV" />
             <p className="rang">Афиша</p>
           </div>
-          <div className="cursor-pointer flex flex-col gap-[10px] items-center">
-            <img src={Tablet} alt="Tablet" />
-            <p>Сеансы</p>
-          </div>
+          <NavLink to="/seanse">
+            <div className="cursor-pointer flex flex-col gap-[10px] items-center">
+              <img src={Tablet} alt="Tablet" />
+              <p>Сеансы</p>
+            </div>
+          </NavLink>
           <div className="cursor-pointer flex flex-col gap-[10px] items-center">
             <img src={Coupon} alt="Coupon" />
             <p>Билеты</p>
@@ -73,7 +75,7 @@ const RootLayout = () => {
           </div>
           <div>
             {isLoggedIn ? (
-              <NavLink to="/">
+              <NavLink to="/profil">
                 <button className="nma2 px-[66px] py-[18px]">Профиль</button>
               </NavLink>
             ) : (

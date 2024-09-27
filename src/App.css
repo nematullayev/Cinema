@@ -17,3 +17,6 @@ body {
 .rang {
   color: #c61f1f;
 }
+.act:active {
+  color: #c61f1f;
+}
