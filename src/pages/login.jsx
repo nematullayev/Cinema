@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; // Import the useNavigate hook
+import { NavLink, useNavigate } from "react-router-dom"; // Import the useNavigate hook
 import Header from "../components/header/header";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { IoIosArrowBack } from "react-icons/io";
 
 const Login = () => {
   const [input, setInput] = useState(""); // Initialize input with an empty string
@@ -45,6 +46,11 @@ const Login = () => {
   return (
     <>
       <Header />
+      <NavLink to="/">
+        <button className="bg-[#111] p-[24px] rounded-xl">
+          <IoIosArrowBack color="red" />
+        </button>
+      </NavLink>
       <div className="flex flex-col gap-[20px] justify-center items-center mt-[50px]">
         <h1 className="text-2xl">Регистрация</h1>
         <p className="w-[300px] text-gray-500 text-center">
