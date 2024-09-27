@@ -26,6 +26,7 @@ import Foter14 from "../assets/foter14.png";
 
 import Main from "../components/main/main";
 import Product from "../components/products/product";
+import { toast } from "react-toastify";
 
 const RootLayout = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);

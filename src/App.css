@@ -20,3 +20,10 @@ body {
 .act:active {
   color: #c61f1f;
 }
+.swiper-button-next:after {
+  content: url("./assets/s-on.png") !important;
+}
+
+.swiper-button-prev:after {
+  content: url("./assets/s-chap.png") !important;
+}
