@@ -7,6 +7,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import "../../../src/App.css";
+import { NavLink } from "react-router-dom";
 
 // Add a simple loader component
 const Loader = () => (
@@ -46,7 +47,7 @@ const Product = () => {
         setLoading(false);
       })
       .catch((error) => {
-        console.error("Error fetching products:", error);
+        console.log("Error fetching products:", error);
         setLoading(false);
       });
   }, []);
@@ -76,11 +77,13 @@ const Product = () => {
               {products.map((product) => (
                 <SwiperSlide key={product.id}>
                   <div className="flex flex-col gap-[10px]">
-                    <img
-                      className="w-[280px] h-[400px] bg-[#1d1d1d] rounded-xl"
-                      src={product.image}
-                      alt={product.name}
-                    />
+                    <NavLink to={`/seanse/${product.id}`}>
+                      <img
+                        className="w-[280px] h-[400px] bg-[#1d1d1d] rounded-xl"
+                        src={product.image}
+                        alt={product.name}
+                      />
+                    </NavLink>
                     <h1 className="text-2xl">{product.title}</h1>
                     <p className="text-xs">{product.description}</p>
                   </div>

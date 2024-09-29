@@ -1,7 +1,4 @@
 import "./App.css";
-import Footer from "./components/footer/footer";
-import Main from "./components/main/main";
-import Product from "./components/products/product";
 
 // todo react-router-dom
 import {
@@ -18,6 +15,7 @@ import Login from "./pages/login";
 import RootLayout from "./layout/RootLayout";
 import Seanse from "./pages/seanse";
 import Profil from "./pages/profil";
+import OneSeansePage from "./pages/oneSeansePage";
 
 function App() {
   const routes = createBrowserRouter([
@@ -37,6 +35,11 @@ function App() {
     {
       path: "/seanse",
       element: <Seanse />,
+    },
+
+    {
+      path: "/seanse/:id",
+      element: <OneSeansePage />,
     },
     {
       path: "/profil",

@@ -57,7 +57,7 @@ const Header = () => {
         </div>
         <div>
           {isLoggedIn ? (
-            <NavLink to="/profil">
+            <NavLink to="/">
               <button className="nma2 px-[66px] py-[18px]">Профиль</button>
             </NavLink>
           ) : (
