@@ -12,10 +12,12 @@ import Pro from "../assets/profil.png";
 import Pencil from "../assets/pencil.png";
 import Doc from "../assets/doc.png";
 import Log from "../assets/logout.png";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 
 const Profil = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -23,6 +25,17 @@ const Profil = () => {
       setIsLoggedIn(true);
     }
   }, []);
+
+  const handleDeleateAccount = () => {
+    localStorage.removeItem("token");
+    const token = localStorage.getItem("token");
+    if (token == null) {
+      toast.loading("Accountdan chiqilyapti");
+      setTimeout(() => {
+        navigate("/");
+      }, 3000);
+    }
+  };
   return (
     <div>
       <header className="px-[100px] flex justify-between items-center mb-[22px]">
@@ -111,7 +124,7 @@ const Profil = () => {
         </div>
         <div className="flex flex-col gap-2">
           <button
-            onClick={localStorage.removeItem("token")}
+            onClick={handleDeleateAccount}
             className="flex gap-3 items-center bg-[#111] p-[20px] rounded-xl w-full"
           >
             <img src={Log} alt="" />
@@ -119,6 +132,7 @@ const Profil = () => {
           </button>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };
