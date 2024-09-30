@@ -111,7 +111,7 @@ const Profil = () => {
         </div>
         <div className="flex flex-col gap-2">
           <button
-            // onClick={localStorage.removeItem("token")}
+            onClick={localStorage.removeItem("token")}
             className="flex gap-3 items-center bg-[#111] p-[20px] rounded-xl w-full"
           >
             <img src={Log} alt="" />
