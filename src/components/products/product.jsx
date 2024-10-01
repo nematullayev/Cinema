@@ -8,6 +8,7 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import "../../../src/App.css";
 import { NavLink } from "react-router-dom";
+import { useQuery, useMutation } from "@tanstack/react-query";
 
 // Add a simple loader component
 const Loader = () => (
@@ -36,21 +37,23 @@ const Loader = () => (
 );
 
 const Product = () => {
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    fetch(`https://66cc9ebfa4dd3c8a71b84178.mockapi.io/api/products`)
-      .then((res) => res.json())
-      .then((data) => {
-        setProducts(data);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.log("Error fetching products:", error);
-        setLoading(false);
-      });
-  }, []);
+  const {
+    isLoading,
+    isError,
+    data: query,
+    isFetching,
+  } = useQuery({
+    queryKey: ["todos"],
+    queryFn: () =>
+      fetch(`https://66cc9ebfa4dd3c8a71b84178.mockapi.io/api/products`)
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(query);
+          return data;
+        }),
+  });
+  if (isLoading) return <Loader />;
+  // if (isError) return <div>Error loading data</div>;
 
   return (
     <div className="flex flex-col gap-[20px] px-[30px] mb-[120px] flex-grow">
@@ -61,37 +64,33 @@ const Product = () => {
         </p>
       </div>
       <div>
-        {loading ? (
-          <Loader />
-        ) : (
-          <Swiper
-            modules={[Navigation, Pagination, Scrollbar, A11y]}
-            spaceBetween={50}
-            slidesPerView={4}
-            navigation
-            pagination={{ clickable: true }}
-            onSwiper={(swiper) => console.log(swiper)}
-            onSlideChange={() => console.log("slide change")}
-          >
-            <div className="p-[30px]">
-              {products.map((product) => (
-                <SwiperSlide key={product.id}>
-                  <div className="flex flex-col gap-[10px]">
-                    <NavLink to={`/seanse/${product.id}`}>
-                      <img
-                        className="w-[280px] h-[400px] bg-[#1d1d1d] rounded-xl"
-                        src={product.image}
-                        alt={product.name}
-                      />
-                    </NavLink>
-                    <h1 className="text-2xl">{product.title}</h1>
-                    <p className="text-xs">{product.description}</p>
-                  </div>
-                </SwiperSlide>
-              ))}
-            </div>
-          </Swiper>
-        )}
+        <Swiper
+          modules={[Navigation, Pagination, Scrollbar, A11y]}
+          spaceBetween={50}
+          slidesPerView={4}
+          navigation
+          pagination={{ clickable: true }}
+          onSwiper={(swiper) => console.log(swiper)}
+          onSlideChange={() => console.log("slide change")}
+        >
+          <div className="p-[30px]">
+            {query.map((product) => (
+              <SwiperSlide key={product.id}>
+                <div className="flex flex-col gap-[10px]">
+                  <NavLink to={`/seanse/${product.id}`}>
+                    <img
+                      className="w-[280px] h-[400px] bg-[#1d1d1d] rounded-xl"
+                      src={product.image}
+                      alt={product.name}
+                    />
+                  </NavLink>
+                  <h1 className="text-2xl">{product.title}</h1>
+                  <p className="text-xs">{product.description}</p>
+                </div>
+              </SwiperSlide>
+            ))}
+          </div>
+        </Swiper>
       </div>
     </div>
   );

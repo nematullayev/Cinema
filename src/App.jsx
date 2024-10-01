@@ -16,6 +16,9 @@ import RootLayout from "./layout/RootLayout";
 import Seanse from "./pages/seanse";
 import Profil from "./pages/profil";
 import OneSeansePage from "./pages/oneSeansePage";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+const queryClient = new QueryClient();
 
 function App() {
   const routes = createBrowserRouter([
@@ -48,9 +51,11 @@ function App() {
   ]);
   return (
     <div className="container mx-auto max-w-[1360px] p-5 min-h-[100vh] text-white flex flex-col ">
-      {/* <Main />
+      <QueryClientProvider client={queryClient}>
+        {/* <Main />
       <Product /> */}
-      <RouterProvider router={routes} />
+        <RouterProvider router={routes} />
+      </QueryClientProvider>
     </div>
   );
 }

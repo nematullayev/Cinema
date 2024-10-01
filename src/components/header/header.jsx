@@ -19,13 +19,13 @@ const Header = () => {
     }
   }, []);
   return (
-    <header className="px-[100px] flex justify-between items-center mb-[22px]">
+    <header className="px-[100px] flex justify-between items-center mb-[22px] ">
       <div>
         <NavLink to="/">
           <img className="w-[112px]" src={Logo} alt="Logo" />{" "}
         </NavLink>
       </div>
-      <div className="flex gap-[25px]">
+      <div className="flex gap-[25px] ">
         <NavLink to="/">
           <div className=" act cursor-pointer flex flex-col gap-[10px] items-center">
             <img src={TV} alt="TV" />
