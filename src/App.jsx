@@ -17,6 +17,7 @@ import Seanse from "./pages/seanse";
 import Profil from "./pages/profil";
 import OneSeansePage from "./pages/oneSeansePage";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import Modal from "./components/modal/modal";
 
 const queryClient = new QueryClient();
 
@@ -47,6 +48,11 @@ function App() {
     {
       path: "/profil",
       element: <Profil />,
+    },
+
+    {
+      path: "/modal",
+      element: <Modal />,
     },
   ]);
   return (
