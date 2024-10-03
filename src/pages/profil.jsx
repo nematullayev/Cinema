@@ -60,10 +60,12 @@ const Profil = () => {
               <p>Сеансы</p>
             </div>
           </NavLink>
-          <div className="cursor-pointer flex flex-col gap-[10px] items-center">
-            <img src={Coupon} alt="Coupon" />
-            <p>Билеты</p>
-          </div>
+          <NavLink to="/bileti">
+            <div className="cursor-pointer flex flex-col gap-[10px] items-center">
+              <img src={Coupon} alt="Coupon" />
+              <p>Билеты</p>
+            </div>
+          </NavLink>
           <div className="cursor-pointer flex flex-col gap-[10px] items-center">
             <img src={Search} alt="Search" />
             <p>Поиск</p>

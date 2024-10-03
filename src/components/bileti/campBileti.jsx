@@ -3,7 +3,7 @@ import Dates from "../dates/dates";
 import Karol from "../../assets/karol.svg";
 import Footer from "../footer/footer";
 
-const Bileti = () => {
+const CampBileti = () => {
   return (
     <div className="mt-[58px] flex flex-col gap-[50px]">
       <Dates></Dates>
@@ -234,4 +234,4 @@ const Bileti = () => {
   );
 };
 
-export default Bileti;
+export default CampBileti;

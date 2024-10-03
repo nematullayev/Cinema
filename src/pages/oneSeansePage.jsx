@@ -8,10 +8,10 @@ import Russian from "../assets/russian.svg";
 import Search from "../assets/search.svg";
 import Tablet from "../assets/tablet-wh.svg";
 import TV from "../assets/seanse-white.svg";
-import Bileti from "../components/bileti/bileti";
 import About from "../components/about.jsx/about";
 import Footer from "../components/footer/footer";
 import { IoIosArrowBack } from "react-icons/io";
+import CampBileti from "../components/bileti/campBileti";
 
 const OneSeansePage = () => {
   const { id } = useParams();
@@ -83,10 +83,12 @@ const OneSeansePage = () => {
               <p className="rang">Сеансы</p>
             </div>
           </NavLink>
-          <div className="cursor-pointer flex flex-col gap-[10px] items-center">
-            <img src={Coupon} alt="Coupon" />
-            <p>Билеты</p>
-          </div>
+          <NavLink to="/bileti">
+            <div className="cursor-pointer flex flex-col gap-[10px] items-center">
+              <img src={Coupon} alt="Coupon" />
+              <p>Билеты</p>
+            </div>
+          </NavLink>
           <div className="cursor-pointer flex flex-col gap-[10px] items-center">
             <img src={Search} alt="Search" />
             <p>Поиск</p>
@@ -153,7 +155,7 @@ const OneSeansePage = () => {
             О фильме
           </button>
         </button>
-        {tab == 1 ? <Bileti /> : <About />}
+        {tab == 1 ? <CampBileti /> : <About />}
       </div>
       <Footer></Footer>
     </div>
