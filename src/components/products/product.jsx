@@ -8,7 +8,8 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import "../../../src/App.css";
 import { NavLink } from "react-router-dom";
-import { useQuery, useMutation } from "@tanstack/react-query";
+import { useQuery, useMutation, Query } from "@tanstack/react-query";
+import useGetQuery from "../../hooks/useGetQuery";
 
 // Add a simple loader component
 const Loader = () => (
@@ -37,23 +38,13 @@ const Loader = () => (
 );
 
 const Product = () => {
-  const {
-    isLoading,
-    isError,
-    data: query,
-    isFetching,
-  } = useQuery({
-    queryKey: ["todos"],
-    queryFn: () =>
-      fetch(`https://66cc9ebfa4dd3c8a71b84178.mockapi.io/api/products`)
-        .then((res) => res.json())
-        .then((data) => {
-          console.log(query);
-          return data;
-        }),
+  const { query, isLoading, isError, isFetching } = useGetQuery({
+    url: `https://66cc9ebfa4dd3c8a71b84178.mockapi.io/api/products`,
+    key: ["movies"],
   });
+
   if (isLoading) return <Loader />;
-  // if (isError) return <div>Error loading data</div>;
+  if (isError) return <div>Error loading data</div>;
 
   return (
     <div className="flex flex-col gap-[20px] px-[30px] mb-[120px] flex-grow">
