@@ -13,7 +13,6 @@ const useGetQuery = ({ url, key = "movies" }) => {
       fetch(url)
         .then((res) => res.json())
         .then((data) => {
-          console.log(query);
           return data;
         }),
   });

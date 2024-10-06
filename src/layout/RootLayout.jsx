@@ -27,16 +27,18 @@ import Foter14 from "../assets/foter14.png";
 import Main from "../components/main/main";
 import Product from "../components/products/product";
 import { toast } from "react-toastify";
+import { useSelector } from "react-redux";
 
 const RootLayout = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  // const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      setIsLoggedIn(true);
-    }
-  }, []);
+  // useEffect(() => {
+  //   const token = localStorage.getItem("token");
+  //   if (token) {
+  //     setIsLoggedIn(true);
+  //   }
+  // }, []);
+  const selector = useSelector((prev) => prev.auth);
 
   return (
     <>
@@ -63,10 +65,12 @@ const RootLayout = () => {
               <p>Билеты</p>
             </div>
           </NavLink>
-          <div className="cursor-pointer flex flex-col gap-[10px] items-center">
-            <img src={Search} alt="Search" />
-            <p>Поиск</p>
-          </div>
+          <NavLink to="/search">
+            <div className="cursor-pointer flex flex-col gap-[10px] items-center">
+              <img src={Search} alt="Search" />
+              <p>Поиск</p>
+            </div>
+          </NavLink>
         </div>
         <div className="flex gap-[20px] items-center">
           <div>
@@ -77,7 +81,7 @@ const RootLayout = () => {
             </button>
           </div>
           <div>
-            {isLoggedIn ? (
+            {selector.token ? (
               <NavLink to="/profil">
                 <button className="nma2 px-[66px] py-[18px]">Профиль</button>
               </NavLink>

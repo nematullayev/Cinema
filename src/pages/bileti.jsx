@@ -48,10 +48,12 @@ const Bileti = () => {
             <img src={Coupon} alt="Coupon" />
             <p className="rang">Билеты</p>
           </div>
-          <div className="cursor-pointer flex flex-col gap-[10px] items-center">
-            <img src={Search} alt="Search" />
-            <p>Поиск</p>
-          </div>
+          <NavLink to="/search">
+            <div className="cursor-pointer flex flex-col gap-[10px] items-center">
+              <img src={Search} alt="Search" />
+              <p>Поиск</p>
+            </div>
+          </NavLink>
         </div>
         <div className="flex gap-[20px] items-center">
           <div>

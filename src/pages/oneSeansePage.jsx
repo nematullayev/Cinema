@@ -6,17 +6,23 @@ import Coupon from "../assets/coupon.svg";
 import Logo from "../assets/logo.png";
 import Russian from "../assets/russian.svg";
 import Search from "../assets/search.svg";
+import Close from "../assets/close.png";
 import Tablet from "../assets/tablet-wh.svg";
 import TV from "../assets/seanse-white.svg";
+import Click from "../assets/Click.png";
+import Payme from "../assets/payme.png";
 import About from "../components/about.jsx/about";
 import Footer from "../components/footer/footer";
-import { IoIosArrowBack } from "react-icons/io";
+import { IoIosArrowBack, IoMdClose } from "react-icons/io";
 import CampBileti from "../components/bileti/campBileti";
+import Panda2 from "../assets/panda2.png";
+import Check from "../assets/check-line.svg";
 
 const OneSeansePage = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [tab, setTab] = useState(1);
+  const [showModal, setShowModal] = React.useState(false);
 
   useEffect(() => {
     fetch(`https://66cc9ebfa4dd3c8a71b84178.mockapi.io/api/products/${id}`)
@@ -89,10 +95,12 @@ const OneSeansePage = () => {
               <p>Билеты</p>
             </div>
           </NavLink>
-          <div className="cursor-pointer flex flex-col gap-[10px] items-center">
-            <img src={Search} alt="Search" />
-            <p>Поиск</p>
-          </div>
+          <NavLink to="/search">
+            <div className="cursor-pointer flex flex-col gap-[10px] items-center">
+              <img src={Search} alt="Search" />
+              <p>Поиск</p>
+            </div>
+          </NavLink>
         </div>
         <div className="flex gap-[20px] items-center">
           <div>
@@ -115,6 +123,127 @@ const OneSeansePage = () => {
           </div>
         </div>
       </header>
+
+      {/* modal */}
+
+      {showModal ? (
+        <>
+          <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
+            <div className=" w-auto my-6 mx-auto max-w-3xl">
+              {/*content*/}
+              <div className="border-0 rounded-lg shadow-lg  flex flex-col w-[800px] mt-[200px] bg-[#111] outline-none focus:outline-none">
+                {/*header*/}
+                <div className="flex items-start justify-between p-5  rounded-t">
+                  <NavLink to="/seanse">
+                    <button className="bg-[#1d1d1d] p-[24px] rounded-xl">
+                      <IoIosArrowBack color="red" />
+                    </button>
+                  </NavLink>
+                  <div className="flex flex-col gap-[5px] items-center">
+                    <h3 className="text-2xl font-semibold">Оплата</h3>
+                    <p>Выберите вид оплаты</p>
+                  </div>
+                  <button
+                    onClick={() => setShowModal(false)}
+                    className="bg-[#1d1d1d] p-[24px] rounded-xl"
+                  >
+                    <IoMdClose color="red" />
+                  </button>
+                </div>
+                {/*body*/}
+                <div className="flex flex-col gap-[48px] items-center justify-center mb-[48px]">
+                  <div className="flex flex-col gap-[20px] bg-[#1d1d1d] p-[10px] w-[580px] rounded-xl">
+                    <div className="flex gap-[20px] ">
+                      <div>
+                        <img
+                          className="w-[260px] h-full"
+                          src={product.image}
+                          alt=""
+                        />
+                      </div>
+                      <div className="flex flex-col gap-[22px]">
+                        <div className="flex flex-col gap-[16px]">
+                          <h2 className="text-2xl">{product.title}</h2>
+                          <p className="text-[#a1a1a1]">
+                            2024 • RU • 6+ • 1ч 34м / 94 минут
+                          </p>
+                          <p>{product.description}</p>
+                          <p>Зал №1</p>
+                          {/* <p>28 марта, 19:30</p> */}
+                        </div>
+                        <div className="">
+                          <button className="flex gap-[6px] items-center bg-[#2d2d2d] px-[16px] py-[12px] rounded-xl">
+                            {/* <img src={Check} alt="" /> */}
+                            <p>28 марта, 19:30</p>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex flex-col gap-[8px]">
+                    <div className="w-[370px] p-[20px] rounded-xl bg-[#1d1d1d] flex justify-between">
+                      <p>Комиссия сервиса</p>
+                      <p>5 000 сум</p>
+                    </div>
+                    <div className="w-[370px] p-[20px] rounded-xl bg-[#1d1d1d] flex justify-between">
+                      <p>Общая сумма</p>
+                      <p>
+                        <span className="rang">135 000</span> сум
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex flex-col gap-[20px] items-center">
+                    <div className="">
+                      <p className="text-[#1d1d1d]">Выберите способ оплаты</p>
+                    </div>
+                    <div className="flex gap-[20px]">
+                      <button className=" w-[280px] rounded-xl bg-[#1d1d1d] py-[25px] px-[95px]">
+                        <img src={Click} alt="" />
+                      </button>
+                      <button className=" w-[280px] rounded-xl bg-[#1d1d1d] py-[25px] px-[95px]">
+                        <img src={Payme} alt="" />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                {/*footer*/}
+                <div className="flex items-center justify-between p-6 border-t border-solid border-[#1d1d1d] rounded-b">
+                  <div className="flex gap-[20px]">
+                    <div className="w-[160px] p-[10px] rounded-xl bg-[#1d1d1d] flex flex-col gap-[10px]">
+                      <div className="flex justify-between">
+                        <p className="text-[#a1a1a1]">65 000 сум</p>
+                        <img src={Close} alt="" />
+                      </div>
+                      <div>
+                        <p>Ряд 7, Место 11</p>
+                      </div>
+                    </div>
+                    <div className="w-[160px] p-[10px] rounded-xl bg-[#1d1d1d] flex flex-col gap-[10px]">
+                      <div className="flex justify-between">
+                        <p className="text-[#a1a1a1]">65 000 сум</p>
+                        <img src={Close} alt="" />
+                      </div>
+                      <div>
+                        <p>Ряд 7, Место 11</p>
+                      </div>
+                    </div>
+                  </div>
+                  <button
+                    className=" px-[80px] py-[24px] bg-red-700 text-white rounded-lg"
+                    type="button"
+                    onClick={() => setShowModal(false)}
+                  >
+                    Оплатить
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
+        </>
+      ) : null}
+      {/* modal */}
+
       <div className="relative">
         <img
           className="w-[1360px] h-[640px] rounded-xl "
@@ -124,7 +253,10 @@ const OneSeansePage = () => {
         <div className="absolute bottom-[50px] left-[480px] flex flex-col gap-[20px] items-center">
           <h1 className="text-3xl">{product.title}</h1>
           <p className="">2024 • {product.description} • 1ч 34м • EN • 6+ </p>
-          <button className="flex items-center gap-5 px-[130px] py-[16px] bg-red-700 text-white rounded-lg">
+          <button
+            onClick={() => setShowModal(true)}
+            className="flex items-center gap-5 px-[130px] py-[16px] bg-red-700 text-white rounded-lg"
+          >
             <p className="">Купить билет</p>
           </button>
         </div>

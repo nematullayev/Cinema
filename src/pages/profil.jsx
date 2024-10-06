@@ -14,20 +14,25 @@ import Doc from "../assets/doc.png";
 import Log from "../assets/logout.png";
 import { NavLink, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
+import { useDispatch, useSelector } from "react-redux";
 
 const Profil = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  // const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
   const [name, setName] = useState("");
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      setIsLoggedIn(true);
-    }
-  }, []);
+  // useEffect(() => {
+  //   const token = localStorage.getItem("token");
+  //   if (token) {
+  //     setIsLoggedIn(true);
+  //   }
+  // }, []);
+  const selector = useSelector((prev) => prev.auth);
+
+  const dispatch = useDispatch();
 
   const handleDeleateAccount = () => {
+    dispatch({ type: "logout" });
     localStorage.removeItem("token");
     const token = localStorage.getItem("token");
     if (token == null) {
@@ -66,10 +71,12 @@ const Profil = () => {
               <p>Билеты</p>
             </div>
           </NavLink>
-          <div className="cursor-pointer flex flex-col gap-[10px] items-center">
-            <img src={Search} alt="Search" />
-            <p>Поиск</p>
-          </div>
+          <NavLink to="/search">
+            <div className="cursor-pointer flex flex-col gap-[10px] items-center">
+              <img src={Search} alt="Search" />
+              <p>Поиск</p>
+            </div>
+          </NavLink>
         </div>
         <div className="flex gap-[20px] items-center">
           <div>
@@ -80,7 +87,7 @@ const Profil = () => {
             </button>
           </div>
           <div>
-            {isLoggedIn ? (
+            {selector.token ? (
               <NavLink to="/profil">
                 <button className="nma2 px-[66px] py-[18px]">Профиль</button>
               </NavLink>

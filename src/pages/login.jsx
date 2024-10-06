@@ -1,14 +1,17 @@
 import React, { useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom"; // Import the useNavigate hook
+import { NavLink, useNavigate } from "react-router-dom";
 import Header from "../components/header/header";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { IoIosArrowBack } from "react-icons/io";
+import { useDispatch } from "react-redux";
 
 const Login = () => {
-  const [input, setInput] = useState(""); // Initialize input with an empty string
-  const navigate = useNavigate(); // Initialize the useNavigate hook for redirection
+  const [input, setInput] = useState("");
+  const navigate = useNavigate();
+
+  const dispatch = useDispatch();
 
   let handleAdd = () => {
     console.log(input);
@@ -32,6 +35,10 @@ const Login = () => {
           if (json.token) {
             localStorage.setItem("token", json.token);
             navigate("/sms");
+            dispatch({
+              type: "login",
+              payload: json.token,
+            });
           } else {
             alert("Invalid login");
           }
