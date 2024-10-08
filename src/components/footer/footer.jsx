@@ -15,7 +15,7 @@ import Foter14 from "../../assets/foter14.png";
 
 const Footer = () => {
   return (
-    <footer className="flex justify-between p-[30px] bg-[#111111] rounded-2xl	">
+    <footer className="flex justify-between p-[30px] bg-[#111111] rounded-2xl flex-grow">
       <div className="flex flex-col gap-[48px] justify-between">
         <div>
           <img className="" src={Foter1} alt="" />

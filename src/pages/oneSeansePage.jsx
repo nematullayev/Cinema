@@ -15,14 +15,17 @@ import About from "../components/about.jsx/about";
 import Footer from "../components/footer/footer";
 import { IoIosArrowBack, IoMdClose } from "react-icons/io";
 import CampBileti from "../components/bileti/campBileti";
-import Panda2 from "../assets/panda2.png";
-import Check from "../assets/check-line.svg";
+import { ToastContainer, toast } from "react-toastify";
+
+import useStore from "../zustand/zustand";
 
 const OneSeansePage = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [tab, setTab] = useState(1);
   const [showModal, setShowModal] = React.useState(false);
+
+  const { tickets, setTicket } = useStore();
 
   useEffect(() => {
     fetch(`https://66cc9ebfa4dd3c8a71b84178.mockapi.io/api/products/${id}`)
@@ -231,7 +234,11 @@ const OneSeansePage = () => {
                   <button
                     className=" px-[80px] py-[24px] bg-red-700 text-white rounded-lg"
                     type="button"
-                    onClick={() => setShowModal(false)}
+                    onClick={() => {
+                      setShowModal(false);
+                      setTicket(product);
+                      console.log(tickets);
+                    }}
                   >
                     Оплатить
                   </button>
@@ -290,6 +297,7 @@ const OneSeansePage = () => {
         {tab == 1 ? <CampBileti /> : <About />}
       </div>
       <Footer></Footer>
+      <ToastContainer />
     </div>
   );
 };

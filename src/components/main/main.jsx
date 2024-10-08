@@ -15,7 +15,7 @@ function Slider() {
   const [swiperInstance, setSwiperInstance] = useState(null);
 
   return (
-    <div>
+    <div className="flex-grow">
       <Swiper
         spaceBetween={50}
         slidesPerView={1}

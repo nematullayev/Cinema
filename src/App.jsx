@@ -78,7 +78,6 @@ function App() {
           <RouterProvider router={routes} />
         </QueryClientProvider>
       </Provider>
-      ,
     </div>
   );
 }
