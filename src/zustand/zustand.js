@@ -13,7 +13,7 @@ let useStore = (set) => ({
       if (!ticketExists) {
         return { tickets: [...state.tickets, ticket] };
       } else {
-        toast.warning("Ticket with this ID already exists:", ticket.id);
+        toast.warning("Siz alaqochon Bilet olib bogansiz");
         return state; // No update to state if the ticket exists
       }
     }),

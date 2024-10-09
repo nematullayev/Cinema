@@ -6,9 +6,9 @@ const Active = () => {
   const { tickets, deleteTicket } = useStore();
 
   return (
-    <div className="flex flex-col gap-[20px]  mb-[100px]">
+    <div className="flex flex-col gap-[20px]  mb-[100px] flex-grow">
       {tickets.length === 0 ? (
-        <p>Sizda hech qanaqa bilet yoq</p>
+        <p className="mb-[75px]">Sizda hech qanaqa bilet yoq</p>
       ) : (
         tickets.map((ticket) => (
           <div

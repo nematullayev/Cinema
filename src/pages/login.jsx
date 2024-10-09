@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import Header from "../components/header/header";
+import Uz from "../assets/UZ.svg";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { IoIosArrowBack } from "react-icons/io";
 import { useDispatch } from "react-redux";
+import { InputMask } from "@react-input/mask";
 
 const Login = () => {
   const [input, setInput] = useState("");
@@ -70,13 +72,19 @@ const Login = () => {
           className="flex flex-col gap-[20px]"
           action=""
         >
-          <input
-            value={input}
-            onChange={(evt) => setInput(evt.target.value)}
-            className="text-white bg-[#111111] w-[330px] h-[50px] rounded-xl p-[10px]"
-            type="number"
-            placeholder="+998 99 999 99 99 "
-          />
+          <div className="text-white bg-[#111111] w-[330px] h-[50px] rounded-xl p-[15px] flex gap-[10px] items-center">
+            <img src={Uz} alt="" />
+            <div className="flex items-center gap-[8px]">
+              <h2>+998</h2>
+              <InputMask
+                value={input}
+                onChange={(evt) => setInput(evt.target.value)}
+                className="text-white bg-transparent outline-none"
+                mask=" (__) ___-__-__"
+                replacement={{ _: /\d/ }}
+              />
+            </div>
+          </div>
           <button
             className="py-[16px] bg-red-700 rounded-xl"
             onClick={handleAdd}

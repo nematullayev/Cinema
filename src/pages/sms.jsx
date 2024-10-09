@@ -4,63 +4,62 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { IoIosArrowBack } from "react-icons/io";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import OtpInput from "react-otp-input";
 
 const Sms = () => {
-  const [inputValue, setInputValue] = useState("");
-  const navigate = useNavigate(); // Initialize the useNavigate hook for redirection
+  const [otp, setOtp] = useState("");
 
-  const handleChange = (e) => {
-    const value = e.target.value;
+  const navigate = useNavigate();
 
-    // Allow only numbers and limit to 4 digits
-    if (/^\d{0,4}$/.test(value)) {
-      setInputValue(value);
-    }
-  };
-
-  const handleSend = () => {
-    console.log(inputValue);
-    if (inputValue > 999) {
-      navigate("/");
-    } else {
-      toast.error("4 ta raqam kiriting");
-    }
-  };
   return (
     <div>
       <Header />
-      <div className="flex gap-[336px] px-[100px] mt-[48px]">
-        <div className="">
+      <div className="flex gap-[310px] px-[100px] mt-[58px]">
+        {/* Orqaga qaytish tugmasi */}
+        <div>
           <NavLink to="/">
             <button className="bg-[#111] p-[24px] rounded-xl">
               <IoIosArrowBack color="red" />
             </button>
           </NavLink>
         </div>
+
+        {/* SMS kiriting formasi */}
         <div className="flex flex-col gap-[20px] items-center justify-center">
           <h2 className="text-3xl">Введите СМС-код</h2>
-          <p className="w-[330px] text-center ">
+          <p className="w-[330px] text-center">
             Введите СМС-код, который мы отправили на номер{" "}
             <span className="text-red-700">+998 88 800 90 00</span>
           </p>
-          <div className="flex gap-[20px]">
-            <input
-              value={inputValue}
-              onChange={handleChange}
-              placeholder="Enter 4 digits"
-              maxLength="4"
-              className="text-white p-[10px] rounded-xl bg-[#111] border-none"
-              type="number"
-            />
-            <button
-              onClick={handleSend}
-              className="bg-red-700 px-[40px] py-[10px] rounded-xl"
-            >
-              Send
-            </button>
-          </div>
+
+          {/* OTP kiritish inputlari */}
+          <OtpInput
+            value={otp}
+            onChange={(value) => {
+              setOtp(value);
+              if (value.length === 4) {
+                navigate("/");
+              }
+            }}
+            numInputs={4}
+            renderSeparator={<span>&nbsp;&nbsp;</span>}
+            inputStyle={{
+              width: "70px",
+              paddingTop: "20px",
+              paddingBottom: "20px",
+              fontSize: "18px",
+              borderRadius: "8px",
+              background: "#111111",
+              margin: "5px",
+              textAlign: "center",
+              outline: "none",
+            }}
+            renderInput={(props) => <input {...props} />}
+          />
+          <div className="flex gap-[20px]"></div>
         </div>
       </div>
+
       <ToastContainer />
     </div>
   );
