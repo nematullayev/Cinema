@@ -48,11 +48,15 @@ const Search = () => {
   });
 
   const handleSearchFilm = (value) => {
+    console.log(value);
+    // if (value === "") {
+    //   <p>Nimanidir qidiring</p>;
+    // } else {
     const filteredData = query.filter((movie) => {
       return movie.title.toLowerCase().includes(value.toLowerCase());
     });
-
     setFilteredData(filteredData);
+    // }
   };
 
   if (isLoading) return <Loader />;

@@ -6,15 +6,13 @@ let useStore = (set) => ({
   tickets: [],
   setTicket: (ticket) =>
     set((state) => {
-      // Check if ticket ID already exists in the tickets array
       const ticketExists = state.tickets.some((t) => t.id === ticket.id);
 
-      // If it doesn't exist, add the ticket
       if (!ticketExists) {
         return { tickets: [...state.tickets, ticket] };
       } else {
         toast.warning("Siz alaqochon Bilet olib bogansiz");
-        return state; // No update to state if the ticket exists
+        return state;
       }
     }),
   deleteTicket: (id) =>

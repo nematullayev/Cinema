@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Outlet, NavLink } from "react-router-dom";
 
 import Arrow from "../assets/Arrow.svg";
@@ -26,19 +26,36 @@ import Foter14 from "../assets/foter14.png";
 
 import Main from "../components/main/main";
 import Product from "../components/products/product";
-import { toast } from "react-toastify";
+import useGetQuery from "../hooks/useGetQuery";
 import { useSelector } from "react-redux";
 
 const RootLayout = () => {
-  // const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  // useEffect(() => {
-  //   const token = localStorage.getItem("token");
-  //   if (token) {
-  //     setIsLoggedIn(true);
-  //   }
-  // }, []);
   const selector = useSelector((prev) => prev.auth);
+
+  const { query, isLoading, isError, isFetching } = useGetQuery({
+    url: `https://66cc9ebfa4dd3c8a71b84178.mockapi.io/api/products`,
+    key: ["movies"],
+  });
+
+  let [pageNumber, setPageNumber] = useState(1);
+
+  const generatePaginationData = () => {
+    return query?.slice((pageNumber - 1) * 4, pageNumber * 4);
+  };
+
+  let filteredData = useMemo(
+    () => generatePaginationData(),
+    [query, pageNumber]
+  );
+
+  let pages = query?.length / 4;
+
+  let pageNumbers = [];
+
+  for (let i = 1; i <= pages; i++) {
+    pageNumbers.push(i);
+  }
+  console.log(pageNumbers);
 
   return (
     <>
@@ -93,11 +110,63 @@ const RootLayout = () => {
           </div>
         </div>
       </header>
-      <Main></Main>
-      <Product />
-      {/* <main>
-        <Outlet />
-      </main>{" "} */}
+      <Main />
+
+      {/* Render products section */}
+      <div className="flex justify-between mb-[20px] px-[75px]">
+        <p className="text-2xl">На неделе</p>
+        <p className="text-red-600 flex items-center gap-3">
+          <span>Показать все</span> <img src={Arrow} alt="" />
+        </p>
+      </div>
+      <div className="flex gap-[20px] flex-wrap justify-center">
+        {!isLoading && query && query.length > 0 ? (
+          filteredData.map((item) => (
+            <div key={item.id} className="flex flex-col gap-[10px]">
+              <NavLink to={`/seanse/${item.id}`}>
+                <img
+                  className="w-[280px] h-[400px] bg-[#1d1d1d] rounded-xl"
+                  src={item.image}
+                  alt={item.name}
+                />
+              </NavLink>
+              <h1 className="text-2xl">{item.title}</h1>
+              <p className="text-xs">{item.description}</p>
+            </div>
+          ))
+        ) : (
+          <p>Loading...</p>
+        )}
+      </div>
+
+      <nav
+        className="text-center mt-[48px] mb-[48px]"
+        aria-label="Page navigation example"
+      >
+        <ul className="inline-flex  ">
+          {pageNumbers.map((i) => {
+            return (
+              <li
+                onClick={(e) => {
+                  e.preventDefault();
+                  setPageNumber(i);
+                }}
+                key={i}
+              >
+                <a
+                  href="#"
+                  className={`flex items-center justify-center px-6 h-14 leading-tight text-gray-500 bg-[#111] border border-gray-500 hover:[1e1e1e]-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white ${
+                    i === pageNumber && "!bg-red-700 text-white"
+                  }`}
+                >
+                  {i}
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+      </nav>
+
       <footer className="flex justify-between p-[30px] bg-[#111111] rounded-2xl  mt-[100px]	">
         <div className="flex flex-col gap-[48px] justify-between">
           <div>

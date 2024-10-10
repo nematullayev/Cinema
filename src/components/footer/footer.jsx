@@ -13,6 +13,8 @@ import Foter12 from "../../assets/foter12.png";
 import Foter13 from "../../assets/foter13.png";
 import Foter14 from "../../assets/foter14.png";
 
+import { React, memo } from "react";
+
 const Footer = () => {
   return (
     <footer className="flex justify-between p-[30px] bg-[#111111] rounded-2xl flex-grow">
@@ -79,4 +81,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default memo(Footer);
