@@ -40,7 +40,7 @@ const RootLayout = () => {
   let [pageNumber, setPageNumber] = useState(1);
 
   const generatePaginationData = () => {
-    return query?.slice((pageNumber - 1) * 4, pageNumber * 4);
+    return query?.slice((pageNumber - 1) * 8, pageNumber * 8);
   };
 
   let filteredData = useMemo(
@@ -48,7 +48,7 @@ const RootLayout = () => {
     [query, pageNumber]
   );
 
-  let pages = query?.length / 4;
+  let pages = query?.length / 8;
 
   let pageNumbers = [];
 
@@ -65,7 +65,7 @@ const RootLayout = () => {
             <img className="w-[112px]" src={Logo} alt="Logo" />{" "}
           </NavLink>
         </div>
-        <div className="flex gap-[25px]">
+        <div className="flex gap-[25px] max-lg:hidden">
           <div className="cursor-pointer flex flex-col gap-[10px] items-center">
             <img src={TV} alt="TV" />
             <p className="rang">Афиша</p>

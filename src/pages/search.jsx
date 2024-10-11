@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 
@@ -47,17 +47,16 @@ const Search = () => {
     key: ["movies"],
   });
 
-  const handleSearchFilm = (value) => {
-    console.log(value);
-    // if (value === "") {
-    //   <p>Nimanidir qidiring</p>;
-    // } else {
-    const filteredData = query.filter((movie) => {
-      return movie.title.toLowerCase().includes(value.toLowerCase());
-    });
-    setFilteredData(filteredData);
-    // }
-  };
+  const handleSearchFilm = useCallback(
+    (value) => {
+      console.log("handleSearchFilm ishga tushdi");
+      const filteredData = query.filter((movie) =>
+        movie.title.toLowerCase().includes(value.toLowerCase())
+      );
+      setFilteredData(filteredData);
+    },
+    [query]
+  );
 
   if (isLoading) return <Loader />;
 
@@ -122,7 +121,7 @@ const Search = () => {
             value={inputValue}
             onChange={(e) => {
               setInputValue(e.target.value);
-              handleSearchFilm(e.target.value);
+              handleSearchFilm(e.target.value); // Use useCallback function
             }}
             type="text"
             placeholder="Названия фильма"
