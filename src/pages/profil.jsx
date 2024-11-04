@@ -20,6 +20,7 @@ const Profil = () => {
   // const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
   const [name, setName] = useState("");
+  localStorage.setItem("Ism", name);
 
   // useEffect(() => {
   //   const token = localStorage.getItem("token");
@@ -142,7 +143,6 @@ const Profil = () => {
                     type="button"
                     onClick={() => {
                       console.log(name);
-                      localStorage.setItem("Ism", name);
                       setShowModal(false);
                     }}
                   >
@@ -164,7 +164,11 @@ const Profil = () => {
         <div className="flex flex-col gap-2" onClick={() => setShowModal(true)}>
           <p className="text-[#4d4d4d]">Имя пользователя</p>
           <button className="flex justify-between items-center bg-[#111] p-[20px] rounded-xl w-full">
-            <p>{name == "" ? "Abdulaziz Abdujalilov" : name}</p>
+            <p>
+              {name == ""
+                ? "Abdulaziz Abdujalilov"
+                : localStorage.setItem("Ism", name) + name}
+            </p>
             <img src={Pencil} alt="" />
           </button>
         </div>

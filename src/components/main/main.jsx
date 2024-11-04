@@ -18,6 +18,10 @@ function Slider() {
     <div className="flex-grow">
       <Swiper
         spaceBetween={50}
+        autoplay={{
+          delay: 2500,
+          // disableOnInteraction: false,
+        }}
         slidesPerView={1}
         onSwiper={(swiper) => {
           setSwiperInstance(swiper); // Swiper instance'ni saqlash

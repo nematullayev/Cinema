@@ -89,13 +89,30 @@ const RootLayout = () => {
             </div>
           </NavLink>
         </div>
-        <div className="flex gap-[20px] items-center">
-          <div>
-            <button className="nma flex items-center gap-2">
-              <img src={Russian} alt="Language" />
-              <p>Ру</p>
-              <img src={Arrow} alt="Arrow" />
-            </button>
+        <div className="flex gap-[20px] items-center ">
+          <div className=" relative ">
+            <img
+              className=" absolute left-[45px] top-[14px]"
+              src={Russian}
+              alt="Russian"
+            />
+            <select className="nma flex items-center gap-2 pl-[20px] w-[90px]">
+              <option value="Ru">
+                <button className="nma   flex items-center gap-2 ">
+                  <p className="text-center">Ru</p>
+                </button>
+              </option>
+              <option value="Uz">
+                <button className="nma  flex items-center gap-2">
+                  <p className="text-center">Uz</p>
+                </button>
+              </option>
+              <option value="En">
+                <button className="nma  flex items-center gap-2">
+                  <p className="text-center">En</p>
+                </button>
+              </option>
+            </select>
           </div>
           <div>
             {selector.token ? (
